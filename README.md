@@ -30,7 +30,7 @@ stephow-auto-title/
 
 ---
 
-## 🚀 실행 방법
+## 🛠️ 실행 방법
 
 ### 1. 필수 설치
 
@@ -52,13 +52,62 @@ python main.py
 
 ---
 
-## 🧪 예시 응답
+## 📦 예시 응답
 
 ```json
 <response>
-{"title": "How to Connect Your Gmail Account"}
+{"title": "stephow.com에서 계정에 로그인하기"}
 </response>
 ```
+
+---
+
+## 🌐 Multilingual Support (다국어 지원)
+
+이 프로젝트는 매뉴얼 제목 생성 시 **언어 설정**을 통해 다국어 출력을 지원합니다.
+
+- 기본 언어는 **Korean (ko)** 입니다.
+- 사용자는 `language` 파라미터를 통해 출력 언어를 선택할 수 있습니다.
+- Claude는 프롬프트 내부 지시에 따라 해당 언어로 제목을 생성합니다.
+
+### 🔤 사용 가능한 언어 예시
+
+| Language | Code | Example Output |
+|----------|------|----------------|
+| Korean   | `ko` | `"stephow.com에서 계정에 로그인하기"` |
+| English  | `en` | `"How to Log In to Your Account on stephow.com"` |
+
+### ✍️ 사용 예시
+
+```json
+{
+  "steps": [
+    { "step_title": "로그인", "step_description": "로그인 버튼 클릭" },
+    { "step_title": "정보 입력", "step_description": "아이디와 비밀번호 입력" }
+  ],
+  "domain": "stephow.com",
+  "language": "ko"
+}
+```
+
+→ Claude가 한국어로 제목 생성:  
+`"stephow.com에서 계정에 로그인하기"`
+
+---
+
+## ✅ Prompt Design Checklist
+
+Claude 3.5 Sonnet 모델을 대상으로 **적합한 결과**를 위해 아래 항목들을 반영했습니다:
+
+- [x] **사용자 목표 인식 유도**
+- [x] **명령형 제목 구조 지시**
+- [x] **단어 수 제한 (10단어 이하)**
+- [x] **도메인 정보 포함 지시**
+- [x] **모호한 표현 금지**
+- [x] **언어 출력 명시 (Multilingual Output)**
+- [x] **다국어 예시 포함 (EN & KO)**
+- [x] **출력 형식 고정 (JSON + <response>)**
+- [x] **단일 결과만 생성 지시**
 
 ---
 
