@@ -1,7 +1,7 @@
 import boto3
 import json
 
-MODEL_ID = "anthropic.claude-3-sonnet-20240229-v1:0"
+MODEL_ID = "anthropic.claude-3.5-sonnet-20240307-v1:0"
 
 def call_claude(prompt):
     bedrock = boto3.client("bedrock-runtime", region_name="us-east-1")
