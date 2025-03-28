@@ -16,20 +16,28 @@ def build_prompt_from_steps(steps, domain="stephow.com", language="ko"):
         input_data["steps"].append(text)
 
     prompt = f"""
-You are an AI assistant specializing in summarizing workflows into concise and informative manual titles.
+You are an AI assistant that generates concise manual titles based on user workflows.
 
 <input_data>
 {json.dumps(input_data, indent=2, ensure_ascii=False)}
 </input_data>
 
 ### Instructions:
-- Identify the main goal of the user from the provided steps.
-- Generate a clear and concise title summarizing the workflow.
-- Follow these formatting rules:
-  - Under 10 words.
-  - Start with an imperative verb ("How to", "Guide to", "Learn to").
-  - Include a domain name if relevant (e.g., "on {domain}").
-  - Avoid redundant or vague words.
+- Determine the **user’s goal** from the given steps.
+- Generate a **concise and informative title** (under 10 words).
+- Prefer to start with an imperative phrase such as "How to", "Guide to", or "Learn to".
+- Include the **domain name** if relevant (e.g., "on {domain}").
+- The title will be shown to users as the default and is only generated once, so make it **clear, helpful, and final**.
+- Generate the title in the user's language: **{language.upper()}**.
+- Avoid vague, repetitive, or redundant terms.
+- If some steps are unclear (e.g., "Untitled"), use contextual clues such as domain or page title if available.
+
+### Examples:
+Input: ["Click 'Login'", "Enter credentials", "Submit form"]
+→ Title: "How to Log In to Your Account"
+
+Input: ["Open settings", "Change password"]
+→ Title: "Guide to Updating Your Password"
 
 Return the result as a JSON object within <response> tags:
 
